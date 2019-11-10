@@ -18,18 +18,12 @@ img {
 	margin-left: auto;
     	margin-right: auto;
 }
-.icon {
-  padding: 16px;
-  margin-left: 8px;
-  margin-right: 8px;
-  width: 32px;
-  text-align: center;
-  text-decoration: none;
-  background: #005878;
-  color: white;
+
+.btn {
+  margin: 4px;
+  color:#005878;
 }
 
-.icon:hover {
-    opacity: 0.7;
+.btn:hover{
+  background-color:#005878;
 }
-
