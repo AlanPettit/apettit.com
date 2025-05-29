@@ -1,0 +1,381 @@
+/* Import Google Font - Playfair Display and Lato */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
+
+/* CSS Variables for a Cohesive Color Palette */
+:root {
+    --primary-text-color: #2c3e50; /* Darker charcoal for main text - more depth */
+    --secondary-text-color: #7f8c8d; /* Muted gray for secondary text */
+    --background-color: #ffffff; /* Very light, cool gray background */
+    --card-background-color: #ffffff; /* White card background */
+    --border-color: #bdc3c7; /* Medium light gray for borders */
+    --accent-color: #2c3e50; /* A professional, subtle blue-green accent */
+    --accent-hover-color: #1a242f; /* Darker shade for hover */
+    --button-outline-color: var(--accent-color); /* Buttons now use accent color */
+    --button-text-color: var(--accent-color); /* Default button text color */
+}
+
+body {
+    font-family: 'Lato', sans-serif; /* Clean, modern sans-serif for body text */
+    color: var(--primary-text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1080px; /* Increased container width for less "bare" sides */
+    margin-top: 20px;
+    /* Removed padding-top and padding-bottom from body, moved to container for better control */
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* --- Updated Header and Image Styling --- */
+
+.header-section {
+    margin-bottom: 50px; /* More space below the entire header section */
+    padding-top: 20px; /* Add some padding above the header content */
+}
+
+h1 {
+    font-family: 'Playfair Display', serif; /* Elegant serif for headings */
+    font-weight: 700;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 10px; /* Reduced margin below H1, closer to image */
+    letter-spacing: 1.5px; /* Slightly more letter spacing */
+    font-size: 3.8rem; /* Significantly larger for impact */
+    line-height: 1.1; /* Adjust line height for large text */
+}
+
+.profile-image-container {
+    display: flex; /* Use flexbox to center the image within its container */
+    justify-content: center; /* Horizontally center the image */
+    align-items: center; /* Vertically center (if container had height) */
+    margin-top: 20px; /* Space above the image */
+    margin-bottom: 20px; /* Space below the image */
+}
+
+.profile-image-container img {
+    border-radius: 50%; /* Keep the circular shape */
+    max-width: 220px; /* Significantly larger image size */
+    height: 220px; /* Ensure height matches width for perfect circle */
+    object-fit: cover; /* Crop image to fit without distortion */
+    border: 4px solid var(--border-color); /* Slightly thicker subtle border */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced, soft shadow */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.profile-image-container img:hover {
+    transform: scale(1.03); /* Slightly enlarge image on hover */
+}
+
+/* --- Responsive adjustments for smaller screens --- */
+@media (max-width: 767.98px) {
+    h1 {
+        font-size: 2.8rem; /* Adjust heading size for smaller screens */
+        letter-spacing: 1px;
+    }
+
+    .profile-image-container img {
+        max-width: 160px; /* Adjust image size for smaller screens */
+        height: 160px;
+    }
+
+    .header-section {
+        margin-bottom: 30px; /* Less space on mobile */
+    }
+}
+
+/* Card Styling */
+.card {
+    border: 1px solid var(--border-color); /* Use variable for border color */
+    background-color: var(--card-background-color); /* Use variable for background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for a minimalist feel */
+    margin-bottom: 30px; /* Space below the card */
+    padding: 15px; /* Add internal padding to the card */
+}
+
+.card-body p {
+    color: var(--secondary-text-color); /* Use secondary color for card text */
+    margin-bottom: 1rem; /* Default paragraph spacing */
+    text-align: justify; /* Justify text for a cleaner block look */
+}
+
+/* Last paragraph in card-body should not have bottom margin */
+.card-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Button Styling */
+.btn-outline-secondary {
+    color: var(--button-text-color);
+    border-color: var(--button-outline-color);
+    margin: 5px; /* Add some margin between buttons */
+    padding: 10px 20px; /* Adjust padding for a slightly larger button */
+    border-radius: 5px; /* Slightly rounded corners for buttons */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.btn-outline-secondary:hover {
+    color: #fff; /* White text on hover */
+    background-color: var(--accent-hover-color);
+    border-color: var(--hover-color);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767.98px) {
+    h1 {
+        font-size: 2.5rem; /* Adjust heading size for smaller screens */
+    }
+
+    .thumbnail img {
+        max-width: 150px;
+        height: 150px;
+    }
+
+    .btn-outline-secondary {
+        display: block; /* Stack buttons vertically on small screens */
+        width: 100%; /* Full width buttons */
+        margin-bottom: 10px; /* Space between stacked buttons */
+    }
+
+    .d-flex.justify-content-center {
+        flex-direction: column; /* Stack buttons in a column */
+        align-items: center; /* Center items when stacked */
+    }
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none; /* Remove underline by default */
+}
+
+a:hover {
+    color: var(--accent-hover-color);
+    text-decoration: underline; /* Add underline on hover for clarity */
+}
+
+/* --- Projects Page Specific Styling --- */
+
+/* Back to Home Link */
+.back-to-home-link {
+    display: inline-block; /* Allows padding and margins */
+    margin-bottom: 40px; /* Space below the link */
+    color: var(--secondary-text-color); /* Muted color for less prominence than main accent */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.back-to-home-link:hover {
+    color: var(--accent-color); /* Accent color on hover */
+    text-decoration: underline;
+}
+
+/* Page Title for Projects Page (similar to main page H1 but might be slightly smaller) */
+.header-section h1 {
+    /* Inherits most H1 styles from index.html (font-family, font-weight, letter-spacing, etc.) */
+    font-size: 3rem; /* Slightly smaller than main H1 for a page title */
+    margin-bottom: 40px; /* Space below the projects page title */
+}
+
+
+/* Section Headings (H3) */
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--primary-text-color); /* Use primary text color for sub-headings */
+    text-align: center;
+    margin-top: 50px; /* Space above each section heading */
+    margin-bottom: 25px; /* Space below each section heading */
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+/* Card Styling for Projects */
+/* Overrides for specific card properties if needed, but primarily inherits from existing .card */
+.card {
+    margin-bottom: 40px; /* More space between project cards */
+    /* Ensure other card styles like border, background, shadow are consistent */
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px; /* Slightly more padding inside the project cards */
+}
+
+/* Heading inside project cards (H4) */
+.card-body h4 {
+    font-family: 'Lato', sans-serif; /* Keep body font for sub-headings in cards */
+    font-weight: 700; /* Bold for emphasis */
+    color: var(--accent-color); /* Use accent color for project titles within cards */
+    margin-bottom: 15px; /* Space below the H4 title */
+    font-size: 1.3rem;
+}
+
+/* List (ul) styling within cards */
+.card-body ul {
+    list-style: none; /* Remove default bullet points */
+    padding-left: 0; /* Remove default padding */
+    margin-bottom: 0; /* No margin at the bottom of the last list */
+}
+
+.card-body ul li {
+    position: relative; /* For custom bullet points */
+    padding-left: 25px; /* Space for custom bullet */
+    margin-bottom: 10px; /* Space between list items */
+    color: var(--secondary-text-color); /* Use secondary text color for list items */
+}
+
+/* Custom bullet point using pseudo-elements */
+.card-body ul li:before {
+    content: '\2022'; /* Unicode for a solid bullet point */
+    color: var(--accent-color); /* Color the bullet with accent */
+    font-size: 1.2em; /* Slightly larger bullet */
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: inherit; /* Align with text */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767.98px) {
+    .header-section h1 {
+        font-size: 2.2rem; /* Smaller page title on mobile */
+    }
+    .section-heading {
+        font-size: 1.8rem; /* Smaller section headings on mobile */
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .back-to-home-link {
+        margin-bottom: 20px;
+    }
+    .card {
+        margin-bottom: 25px;
+        padding: 15px;
+    }
+    .card-body h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    .card-body ul li {
+        padding-left: 20px;
+        margin-bottom: 8px;
+    }
+}
+
+/* Styling for project titles within cards (optional, if you want specific font weight/color for this h4) */
+.project-card-title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 15px; /* Space below the H4 title */
+    font-size: 1.3rem;
+}
+
+/* Styling for Project Thumbnails */
+.project-thumbnail {
+    display: block; /* Ensures it takes up its own line for proper centering if needed */
+    max-width: 120px; /* Adjust size as desired */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0px auto 20px auto; /* Center image and add space below */
+    border-radius: 8px; /* Slightly rounded corners for a modern feel */
+    border: 1px solid var(--border-color); /* Subtle border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* Soft shadow for depth */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+.project-thumbnail:hover {
+    transform: scale(1.03); /* Slight scale on hover */
+}
+
+/* Adjustments for images on smaller screens */
+@media (max-width: 767.98px) {
+    .project-thumbnail {
+        max-width: 100px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Section Thumbnail Styling (one per H3 section) */
+.section-thumbnail {
+    display: block; /* Ensures it takes up its own line and can be centered */
+    max-width: 250px; /* Adjust size as desired for a prominent section image */
+    height: 250px; /* Explicit height to ensure square, helps consistency */
+    object-fit: cover; /* Crops the image to fit the dimensions without stretching */
+    margin: 30px auto 40px auto; /* Center image horizontally and add generous space above/below */
+    border-radius: 12px; /* Slightly more rounded corners for a softer look */
+    border: 2px solid var(--border-color); /* A bit thicker, more defined border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12); /* A more prominent, soft shadow */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+.section-thumbnail:hover {
+    transform: scale(1.02); /* Slight scale on hover */
+}
+
+/* Responsive adjustments for section images on smaller screens */
+@media (max-width: 767.98px) {
+    .section-thumbnail {
+        max-width: 180px;
+        height: 180px;
+        margin: 20px auto 30px auto;
+    }
+}
+
+/* Styling for the main project section group (the new container) */
+.project-section-group {
+    background-color: var(--card-background-color); /* Match card background */
+    border: 1px solid var(--border-color); /* Use border color for the outline */
+    border-radius: 8px; /* Consistent rounded corners */
+    padding: 30px; /* Generous padding inside the group */
+    margin-bottom: 50px; /* Space between each full section group */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+}
+
+/* Adjustments for section heading within the new group */
+.project-section-group .section-heading {
+    margin-top: 0; /* Remove top margin as padding handles space */
+    margin-bottom: 25px; /* Keep space below heading */
+}
+
+/* Adjustments for section thumbnail within the new group */
+.project-section-group .section-thumbnail {
+    margin-top: 0; /* Remove top margin as padding handles space */
+    margin-bottom: 30px; /* Keep space below thumbnail */
+}
+
+/* Adjustments for individual cards within the new group */
+.project-section-group .card {
+    border: none; /* Remove individual card borders (they're inside a bordered group) */
+    box-shadow: none; /* Remove individual card shadows */
+    margin-bottom: 25px; /* Adjust spacing between cards within the group */
+    padding: 0; /* Remove padding from individual cards if the group padding is sufficient */
+    background-color: transparent; /* Make card background transparent so group background shows */
+}
+
+/* Ensure the last card in a group doesn't have extra bottom margin */
+.project-section-group .card:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .project-section-group {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    .project-section-group .section-heading {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    .project-section-group .section-thumbnail {
+        max-width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+    .project-section-group .card {
+        margin-bottom: 15px;
+    }
+}
