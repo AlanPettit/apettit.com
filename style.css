@@ -1,29 +1,457 @@
-a{
-	color:#005878;
-}
-h1{
-	color:#005878;
-	font-family: Trebuchet MS,Lucida Grande,Lucida Sans 	Unicode,Lucida Sans,Tahoma,sans-serif;
-	font-size: 480%;
-	text-align:center;
-}
-h3{
-	text-align:center;
-}
-img {
-	display: block;
-	padding: 16px;
-    	width: 48%;
-    	height: auto;
-	margin-left: auto;
-    	margin-right: auto;
+/* ==========================================================================
+   PRODUCTION-GRADE ARCHITECTURAL DESIGN SYSTEM
+   Theme: Industrial Swiss (Clean Contrast, High Metric Precision)
+   Author: Alan Pettit
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.btn {
-  margin: 4px;
-  color:#005878;
+:root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --gray: #e0e0e0;
+    --accent: #000000;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.btn:hover{
-  background-color:#005878;
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    color: var(--text);
+    background-color: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY TYPINGS
+   ========================================================================== */
+h1 {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+    margin: 0;
+}
+
+/* ==========================================================================
+   ZONE 1: HERO LANDING
+   ========================================================================== */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.hero-container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.hero-subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: #999;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    margin: 20px 0;
+    line-height: 1.1;
+}
+
+.hero-description {
+    font-size: 1.5rem;
+    color: #444;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+.hero-action-container {
+    margin-top: 60px;
+}
+
+.btn-anchor {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    transition: opacity 0.2s ease;
+}
+
+.btn-anchor:hover {
+    opacity: 0.6;
+}
+
+/* ==========================================================================
+   ZONE 2: PROJECT GRID LAYOUT
+   ========================================================================== */
+.projects-header {
+    max-width: 1100px;
+    margin: 80px auto 40px;
+    padding: 0 20px;
+}
+
+.projects-meta {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+}
+
+.main-heading {
+    margin-top: 10px;
+}
+
+.projects-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.project-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+/* Core Micro-Chassis Card Structure */
+.project-card {
+    width: 320px;
+    padding: 40px;
+    border: 1px solid var(--gray);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    position: relative;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.project-card h2 {
+    font-family: var(--font-main);
+    font-weight: 700;
+    margin: 15px 0 5px 0;
+    text-transform: none; /* Inter looks best in sentence case */
+}
+
+.project-card p {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+.nda-tag {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #999;
+    border: 1px solid #eee;
+    padding: 2px 6px;
+    display: inline-block;
+    margin-bottom: 15px;
+    align-self: flex-start;
+}
+
+/* Visual Motion Stage Boxes */
+.visual-container {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+}
+
+/* Blueprint Line Matrices */
+.blueprint-outline {
+    width: 60px;
+    height: 60px;
+    border: 1px dashed #999;
+    position: absolute;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.project-card:hover .blueprint-outline {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    transform: rotate(90deg);
+    opacity: 0.1;
+}
+
+.part {
+    background: #ccc;
+    position: absolute;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   MECHANICAL ANIMATION PROPERTIES
+   ========================================================================== */
+
+/* Animation Sequence 1: Layers (Composites Card) */
+.card-layers .p-top { width: 40px; height: 4px; transform: translateY(-30px) rotate(20deg); }
+.card-layers .p-mid { width: 40px; height: 4px; transform: translateY(0px) rotate(0deg); }
+.card-layers .p-bot { width: 40px; height: 4px; transform: translateY(30px) rotate(-20deg); }
+
+.project-card.card-layers:hover .p-top { transform: translateY(-10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+.project-card.card-layers:hover .p-mid { transform: translateY(0px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+.project-card.card-layers:hover .p-bot { transform: translateY(10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+
+/* Animation Sequence 2: Dot Core Matrix (Satellites Card) */
+.card-dot .p-top { width: 40px; height: 4px; transform: translateY(-30px) rotate(0deg); }
+.card-dot .p-mid { width: 16px; height: 16px; border-radius: 50%; }
+.card-dot .p-bot { width: 40px; height: 4px; transform: translateY(30px) rotate(0deg); }
+
+.project-card.card-dot:hover .p-top { transform: translateY(-10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+.project-card.card-dot:hover .p-mid { transform: scale(0.5); background: var(--accent); margin: 2px 0; }
+.project-card.card-dot:hover .p-bot { transform: translateY(10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+
+/* Animation Sequence 3: Assy Linkages (Munitions Card) */
+.card-assy .p-top { width: 40px; height: 4px; transform: translateY(-30px) rotate(-20deg); }
+.card-assy .p-mid { width: 16px; height: 16px; border-radius: 50%; }
+.card-assy .p-bot { width: 40px; height: 4px; transform: translateY(30px) rotate(20deg); }
+
+.project-card.card-assy:hover .p-top { transform: translateY(0px) rotate(45deg); background: var(--accent); margin: 2px 0; }
+.project-card.card-assy:hover .p-mid { background: var(--accent); margin: 2px 0; }
+.project-card.card-assy:hover .p-bot { transform: translateY(0px) rotate(-45deg); background: var(--accent); margin: 2px 0; }
+
+/* Card Structural Footer Outputs */
+.card-footer {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-footer .tag {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .tag {
+    color: #000;
+}
+
+.tag::before { content: '['; margin-right: 2px; color: #eee; transition: color 0.3s ease; }
+.tag::after { content: ']'; margin-left: 2px; color: #eee; transition: color 0.3s ease; }
+
+.project-card:hover .tag::before,
+.project-card:hover .tag::after {
+    color: #000;
+}
+
+/* ==========================================================================
+   ZONE 3: HEAVY GROUND FOOTER BLOCK
+   ========================================================================== */
+.site-footer {
+    margin-top: 150px;
+    padding: 80px 0 60px 0;
+    border-top: 2px solid #000;
+    background: #fff;
+}
+
+.footer-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-col h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin: 0 0 20px 0;
+}
+
+.footer-link {
+    display: block;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: opacity 0.2s ease;
+}
+
+.footer-link:hover {
+    opacity: 0.5;
+}
+
+.footer-link-email {
+    display: block;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 24px;
+    color: #000;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-link-email:hover {
+    opacity: 0.5;
+}
+
+.footer-location-text {
+    color: #666; 
+    font-size: 13px; 
+    margin-top: 10px;
+}
+
+.copyright {
+    grid-column: 1 / -1;
+    margin-top: 60px;
+    font-size: 10px;
+    color: #ccc;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   FLUID CONTROL MONITOR MODULES (SIDE TELEMETRY)
+   ========================================================================== */
+#scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-family: var(--font-main);
+    font-size: 9px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 2px;
+    color: #ccc;
+    opacity: 0;
+    transition: opacity 0.3s, color 0.2s;
+    z-index: 100;
+}
+
+#scroll-top:hover {
+    color: #000;
+}
+
+.show-scroll {
+    opacity: 1 !important;
+}
+
+#scroll-hint {
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%) translateX(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0; 
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 10;
+}
+
+#scroll-hint span {
+    font-family: var(--font-main);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ccc;
+    writing-mode: vertical-rl; 
+    text-transform: uppercase;
+}
+
+#scroll-hint .line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, #ccc, transparent);
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT CONSTRAINTS
+   ========================================================================== */
+@media (max-width: 950px) {
+    .project-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .project-card {
+        width: 100%;
+        max-width: 450px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    .hero-description {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #scroll-hint {
+        display: none !important; /* Safety cutout to prevent overlap grid systems */
+    }
+    .hero-section {
+        padding: 0 20px;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
 }
