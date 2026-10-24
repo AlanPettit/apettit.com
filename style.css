@@ -229,35 +229,38 @@ p {
 }
 
 /* ==========================================================================
-   MECHANICAL ANIMATION PROPERTIES
+   MECHANICAL ANIMATION PROPERTIES (3D-FLIP COMPATIBLE)
    ========================================================================== */
 
-/* Animation Sequence 1: Layers (Composites Card) */
+/* --- Animation Sequence 1: Layers (Composites Card) --- */
 .card-layers .p-top { width: 40px; height: 4px; transform: translateY(-30px) rotate(20deg); }
 .card-layers .p-mid { width: 40px; height: 4px; transform: translateY(0px) rotate(0deg); }
 .card-layers .p-bot { width: 40px; height: 4px; transform: translateY(30px) rotate(-20deg); }
 
-.project-card.card-layers:hover .p-top { transform: translateY(-10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
-.project-card.card-layers:hover .p-mid { transform: translateY(0px) rotate(0deg); background: var(--accent); margin: 2px 0; }
-.project-card.card-layers:hover .p-bot { transform: translateY(10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+/* Updated: Triggers hover on the outer card wrapper */
+.card-layers:hover .p-top { transform: translateY(-10px) rotate(0deg); background: var(--accent); }
+.card-layers:hover .p-mid { transform: translateY(0px) rotate(0deg); background: var(--accent); }
+.card-layers:hover .p-bot { transform: translateY(10px) rotate(0deg); background: var(--accent); }
 
-/* Animation Sequence 2: Dot Core Matrix (Satellites Card) */
+/* --- Animation Sequence 2: Dot Core Matrix (Satellites Card) --- */
 .card-dot .p-top { width: 40px; height: 4px; transform: translateY(-30px) rotate(0deg); }
 .card-dot .p-mid { width: 16px; height: 16px; border-radius: 50%; }
 .card-dot .p-bot { width: 40px; height: 4px; transform: translateY(30px) rotate(0deg); }
 
-.project-card.card-dot:hover .p-top { transform: translateY(-10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
-.project-card.card-dot:hover .p-mid { transform: scale(0.5); background: var(--accent); margin: 2px 0; }
-.project-card.card-dot:hover .p-bot { transform: translateY(10px) rotate(0deg); background: var(--accent); margin: 2px 0; }
+/* Updated: Triggers hover on the outer card wrapper */
+.card-dot:hover .p-top { transform: translateY(-10px) rotate(0deg); background: var(--accent); }
+.card-dot:hover .p-mid { transform: scale(0.5); background: var(--accent); }
+.card-dot:hover .p-bot { transform: translateY(10px) rotate(0deg); background: var(--accent); }
 
-/* Animation Sequence 3: Assy Linkages (Munitions Card) */
+/* --- Animation Sequence 3: Assy Linkages (Munitions Card) --- */
 .card-assy .p-top { width: 40px; height: 4px; transform: translateY(-30px) rotate(-20deg); }
 .card-assy .p-mid { width: 16px; height: 16px; border-radius: 50%; }
 .card-assy .p-bot { width: 40px; height: 4px; transform: translateY(30px) rotate(20deg); }
 
-.project-card.card-assy:hover .p-top { transform: translateY(0px) rotate(45deg); background: var(--accent); margin: 2px 0; }
-.project-card.card-assy:hover .p-mid { background: var(--accent); margin: 2px 0; }
-.project-card.card-assy:hover .p-bot { transform: translateY(0px) rotate(-45deg); background: var(--accent); margin: 2px 0; }
+/* Updated: Triggers hover on the outer card wrapper */
+.card-assy:hover .p-top { transform: translateY(0px) rotate(45deg); background: var(--accent); }
+.card-assy:hover .p-mid { background: var(--accent); }
+.card-assy:hover .p-bot { transform: translateY(0px) rotate(-45deg); background: var(--accent); }
 
 /* Card Structural Footer Outputs */
 .card-footer {
@@ -454,4 +457,84 @@ p {
     .hero-title {
         font-size: 2.5rem;
     }
+}
+
+/* ==========================================================================
+   FULL-CARD 3D FLIP INTERACTION SYSTEM
+   ========================================================================== */
+
+/* 1. Make the project-card itself the 3D perspective wrapper */
+.project-card.card-flipper {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background: transparent !important; /* Clear background so sides don't bleed */
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important; /* Move padding to inner faces */
+    min-height: 440px; /* Lock a consistent height for the card */
+}
+
+/* 2. Configure front and back face behavior */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    border: 1px solid var(--gray);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* 3. Maintain hover border styling on the front face */
+.project-card.card-flipper:hover .card-front {
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+/* 4. Position and style the back side */
+.card-back {
+    transform: rotateY(180deg);
+    padding: 0; /* Full bleed image layout */
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 5. Force the reveal image to cover the entire back */
+.reveal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.15); /* Strict Industrial Swiss B&W look */
+}
+
+/* 6. Subtle technical hint label at the bottom of the image */
+.back-hint {
+    position: absolute;
+    bottom: 16px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    text-transform: uppercase;
+}
+
+/* 7. Trigger the 180-degree flip on click */
+.project-card.card-flipper.is-flipped {
+    transform: rotateY(180deg);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ensure smooth transition when flipping back */
+.project-card.card-flipper {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
